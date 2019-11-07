@@ -1,0 +1,15 @@
+authenticated.request.list.label.title = Título
+authenticated.request.list.label.description = Descripción
+authenticated.request.list.label.reward = Recompensa
+authenticated.request.list.label.deadline = Fecha Límite
+authenticated.request.list.label.moment = Publicación
+authenticated.request.list.label.ticker = Ticker
+
+authenticated.request.form.label.title = Título:
+authenticated.request.form.label.description = Descripción:
+authenticated.request.form.label.reward = Recompensa:
+authenticated.request.form.label.deadline = Fecha Límite:
+authenticated.request.form.label.moment = Publicación:
+authenticated.request.form.label.ticker = Ticker:
+authenticated.request.form.label.button.return = Volver
+authenticated.request.form.button.create = Crear

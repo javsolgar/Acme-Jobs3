@@ -1,0 +1,16 @@
+authenticated.offers.list.label.title = Title
+authenticated.offers.list.label.description = Description
+authenticated.offers.list.label.lower = Lower Range
+authenticated.offers.list.label.major = Major Range
+authenticated.offers.list.label.deadline = Dead-Line
+authenticated.offers.list.label.moment = Publication
+
+authenticated.offers.form.label.title = Title:
+authenticated.offers.form.label.description = Description:
+authenticated.offers.form.label.lower = Lower Range:
+authenticated.offers.form.label.major = Major Range:
+authenticated.offers.form.label.deadline = Dead-Line:
+authenticated.offers.form.label.moment = Publication:
+authenticated.offers.form.label.ticker = Ticker:
+authenticated.offers.form.label.button.return = Return
+authenticated.offers.form.button.create = Create
