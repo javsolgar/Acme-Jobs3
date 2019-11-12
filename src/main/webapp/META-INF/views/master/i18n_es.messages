@@ -56,6 +56,7 @@ master.menu.administrator.announcement.list= Lista de anuncios
 master.menu.administrator.announcement.form= Crear anuncio
 master.menu.administrator.configuration.list= Parámetros
 master.menu.administrator.dashboard.show = Indicadores
+master.menu.administrator.announcement.create = Crear anuncio
 
 # master.menu.provider ########################################################
 
