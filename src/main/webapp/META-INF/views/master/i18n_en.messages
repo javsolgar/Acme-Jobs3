@@ -57,6 +57,7 @@ master.menu.administrator.announcement.list= List of announcements
 master.menu.administrator.announcement.form= Create Announcement
 master.menu.administrator.configuration.list = Parameters
 master.menu.administrator.dashboard.show = Indicators
+master.menu.administrator.announcement.create = Create an announcement
 
 # master.menu.provider ########################################################
 
