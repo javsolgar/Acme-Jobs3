@@ -15,7 +15,7 @@
 	<acme:form-textbox code="authenticated.request.form.label.ticker" path="ticker"/>
 	<jstl:if test="${command == 'create'}">
 	<acme:message code="authenticated.request.form.message.explanation"/>
-	<acme:form-checkbox code="authenticated.request.form.checkbox.agree" path="remember"/>
+	<acme:form-checkbox code="authenticated.request.form.checkbox.agree" path="accept"/>
 	</jstl:if>
 	
 	

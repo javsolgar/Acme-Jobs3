@@ -15,3 +15,5 @@ authenticated.request.form.label.button.return = Return
 authenticated.request.form.button.create = Create
 authenticated.request.form.message.explanation = If you create the request you won't can delete or update it
 authenticated.request.form.checkbox.agree = I understand it
+authenticated.request.error.tickerDuplicated = The ticker musn't match
+authenticated.request.error.must-accept = You must accept the condition, wich says that you can't delete or update the request
