@@ -1,7 +1,7 @@
 
 package acme.features.administrator.dashboard;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,23 +92,23 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		return res;
 	}
 
-	public Collection<Integer> getCompanysBySector() {
-		Collection<Integer> res = this.repository.getCompanysBySector();
+	public List<Integer> getCompanysBySector() {
+		List<Integer> res = this.repository.getCompanysBySector();
 		return res;
 	}
 
-	public Collection<String> getSectorsOfCompanys() {
-		Collection<String> res = this.repository.getSectorsOfCompanys();
+	public List<String> getSectorsOfCompanys() {
+		List<String> res = this.repository.getSectorsOfCompanys();
 		return res;
 	}
 
-	public Collection<Integer> getInverstorsBySector() {
-		Collection<Integer> res = this.repository.getInverstorsBySector();
+	public List<Integer> getInverstorsBySector() {
+		List<Integer> res = this.repository.getInverstorsBySector();
 		return res;
 	}
 
-	public Collection<String> getSectorOfInverstors() {
-		Collection<String> res = this.repository.getSectorOfInverstors();
+	public List<String> getSectorOfInverstors() {
+		List<String> res = this.repository.getSectorOfInverstors();
 		return res;
 	}
 
