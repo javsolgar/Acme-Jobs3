@@ -64,6 +64,7 @@ master.menu.administrator.announcement.create = Create an announcement
 master.menu.provider = Provider
 master.menu.provider.favourite-link = Favourite link
 master.menu.provider.requestList = Request list
+master.menu.provider.requestCreate = Create a request
 
 # master.menu.consumer ##########################################################
 
