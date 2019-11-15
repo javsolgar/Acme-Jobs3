@@ -64,6 +64,8 @@ master.menu.provider = Proveedor
 master.menu.provider.favourite-link = Enlace favorito
 master.menu.provider.requestList = Lista de peticiones
 master.menu.provider.requestCreate = Crear una petición
+master.menu.consumer.OfferList = Lista de ofertas
+master.menu.consumer.OfferCreate = Crear una oferta
 
 # master.menu.consumer ##########################################################
 
