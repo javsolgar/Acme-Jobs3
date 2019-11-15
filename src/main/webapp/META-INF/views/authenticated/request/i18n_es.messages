@@ -8,6 +8,8 @@ authenticated.request.list.label.ticker = Ticker
 authenticated.request.form.label.title = Título:
 authenticated.request.form.label.description = Descripción:
 authenticated.request.form.label.reward = Recompensa:
+authenticated.request.form.label.amount = Cantidad:
+authenticated.request.form.label.currency = Moneda:
 authenticated.request.form.label.deadline = Fecha Límite:
 authenticated.request.form.label.moment = Publicación:
 authenticated.request.form.label.ticker = Ticker:
@@ -17,3 +19,5 @@ authenticated.request.form.message.explanation = Sí creas la petición no podr�
 authenticated.request.form.checkbox.agree = Lo entiendo
 authenticated.request.error.tickerDuplicated = El ticker no debe coincidir con ningun otro
 authenticated.request.error.must-accept = Debes aceptar la condición de no poder borrar ni editar las peticiones creadas
+
+authenticated.request.form.label.euro = Euro

@@ -57,6 +57,7 @@
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.provider.requestList" action="/authenticated/request/list"/>
+			<acme:menu-suboption code="master.menu.provider.requestCreate" action="/authenticated/request/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">

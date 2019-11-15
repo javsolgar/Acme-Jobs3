@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import acme.entities.request.Request;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
+import acme.framework.datatypes.Money;
 import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractCreateService;
 
@@ -33,7 +34,7 @@ public class AuthenticatedRequestCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "moment", "remember");
+		request.bind(entity, errors, "moment", "remember", "amount", "currency", "reward");
 
 	}
 
@@ -42,7 +43,7 @@ public class AuthenticatedRequestCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title", "description", "deadLine", "reward", "ticker");
+		request.unbind(entity, model, "title", "description", "deadLine", "ticker");
 
 	}
 
@@ -71,8 +72,18 @@ public class AuthenticatedRequestCreateService implements AbstractCreateService<
 	@Override
 	public void create(final acme.framework.components.Request<Request> request, final Request entity) {
 		Date moment;
+		Money reward;
+		Double amount;
+		String currency;
 
+		reward = new Money();
+		amount = request.getModel().getDouble("amount");
+		currency = request.getModel().getString("currency");
 		moment = new Date(System.currentTimeMillis() - 1);
+		reward.setAmount(amount);
+		reward.setCurrency(currency);
+
+		entity.setReward(reward);
 		entity.setMoment(moment);
 		this.repository.save(entity);
 
