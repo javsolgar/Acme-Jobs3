@@ -5,6 +5,7 @@ authenticated.request.list.label.deadline = Fecha Límite
 authenticated.request.list.label.moment = Publicación
 authenticated.request.list.label.ticker = Ticker
 
+
 authenticated.request.form.label.title = Título:
 authenticated.request.form.label.description = Descripción:
 authenticated.request.form.label.reward = Recompensa:

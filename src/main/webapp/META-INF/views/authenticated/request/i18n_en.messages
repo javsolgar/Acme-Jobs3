@@ -5,6 +5,7 @@ authenticated.request.list.label.deadline = Dead-Line
 authenticated.request.list.label.moment = Publication
 authenticated.request.list.label.ticker = Ticker
 
+
 authenticated.request.form.label.title = Title:
 authenticated.request.form.label.description = Description:
 authenticated.request.form.label.reward = Reward:
