@@ -29,6 +29,11 @@
 	
 	<acme:form-textbox code="authenticated.offers.form.label.ticker" path="ticker"/>
 	
-	<acme:form-submit test ="${command == 'create'}" code="authenticated.request.form.button.create" action="/authenticated/offers/create"/>
+	<jstl:if test="${command == 'create'}">
+	<acme:message code="authenticated.offers.form.message.explanation"/>
+	<acme:form-checkbox code="authenticated.offers.form.checkbox.agree" path="accept"/>
+	</jstl:if>
+	
+	<acme:form-submit test ="${command == 'create'}" code="authenticated.offers.form.button.create" action="/authenticated/offers/create"/>
 	<acme:form-return code="authenticated.offers.form.label.button.return"/>
 </acme:form>

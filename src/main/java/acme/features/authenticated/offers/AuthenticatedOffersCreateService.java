@@ -35,7 +35,7 @@ public class AuthenticatedOffersCreateService implements AbstractCreateService<A
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "moment", "lowerRange", "majorRange", "amountLower", "amountMajor", "currency");
+		request.bind(entity, errors, "moment", "lowerRange", "majorRange", "amountLower", "amountMajor", "currency", "accept");
 
 	}
 
@@ -62,13 +62,16 @@ public class AuthenticatedOffersCreateService implements AbstractCreateService<A
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		boolean isDuplicated, isRange;
+		boolean isDuplicated, isRange, isAccepted;
 
 		isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
 		errors.state(request, !isDuplicated, "ticker", "authenticated.offers.error.tickerDuplicated");
 
 		isRange = request.getModel().getDouble("amountMajor") > request.getModel().getDouble("amountLower");
 		errors.state(request, isRange, "amountMajor", "authenticated.offers.error.notRange");
+
+		isAccepted = request.getModel().getBoolean("accept");
+		errors.state(request, isAccepted, "accept", "authenticated.offers.error.must-accept");
 
 	}
 
