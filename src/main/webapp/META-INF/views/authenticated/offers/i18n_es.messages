@@ -10,8 +10,13 @@ authenticated.offers.form.label.title = Título:
 authenticated.offers.form.label.description = Descripción:
 authenticated.offers.form.label.lower = Rango Menor:
 authenticated.offers.form.label.major = Rango Mayor:
+authenticated.offers.form.label.currency = Moneda:
+authenticated.offers.form.label.amountMajor = Cifra superior del rango:
+authenticated.offers.form.label.amountLower = Cifra inferior del rango:
 authenticated.offers.form.label.deadline = Fecha Límite:
 authenticated.offers.form.label.moment = Publicación:
 authenticated.offers.form.label.ticker = Ticker:
 authenticated.offers.form.label.button.return = Volver
 authenticated.offers.form.button.create = Crear
+
+authenticated.offers.form.label.euro = Euro

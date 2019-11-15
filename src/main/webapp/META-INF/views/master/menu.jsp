@@ -64,6 +64,9 @@
 			<acme:menu-suboption code="master.menu.consumer.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.consumer.requestList" action="/authenticated/request/list"/>
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.consumer.OfferList" action="/authenticated/offers/list"/>
+			<acme:menu-suboption code="master.menu.consumer.OfferCreate" action="/authenticated/offers/create"/>
 		</acme:menu-option>
 	</acme:menu-left>
 

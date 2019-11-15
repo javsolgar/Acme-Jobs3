@@ -71,6 +71,8 @@ master.menu.provider.requestCreate = Create a request
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 master.menu.consumer.requestList = Request list
+master.menu.consumer.OfferList = Offers list
+master.menu.consumer.OfferCreate = Create an offer
 
 # master.menu.user-account ####################################################
 
