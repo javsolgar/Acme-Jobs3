@@ -2,7 +2,7 @@
 package acme.entities.dashboard;
 
 import java.io.Serializable;
-import java.util.Collection;
+import java.util.List;
 
 import acme.features.administrator.dashboard.AdministratorDashboardRepository;
 import lombok.Getter;
@@ -34,12 +34,12 @@ public class Dashboard implements Serializable {
 
 	private Double						maxRewardOffers;
 
-	private Collection<Integer>			companysBySector;
+	private List<Integer>				companysBySector;
 
-	private Collection<String>			sectorsOfCompanys;
+	private List<String>				sectorsOfCompanys;
 
-	private Collection<Integer>			inverstorsBySector;
+	private List<Integer>				inverstorsBySector;
 
-	private Collection<String>			sectorsOfInverstors;
+	private List<String>				sectorsOfInverstors;
 
 }
