@@ -43,7 +43,7 @@ public class AuthenticatedRequestCreateService implements AbstractCreateService<
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title", "description", "deadLine", "ticker");
+		request.unbind(entity, model, "title", "description", "deadLine");
 
 	}
 
