@@ -57,6 +57,9 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.configuration.list" action="/administrator/configuration/show" />
 			<acme:menu-suboption code="master.menu.administrator.dashboard.show" action="/administrator/dashboard/show" />
+			<acme:menu-separator/>
+			<acme:menu-suboption code="master.menu.administrator.banner.list" action="/administrator/banner/list" />
+			<acme:menu-suboption code="master.menu.administrator.banner.create" action="/administrator/banner/create" />
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
