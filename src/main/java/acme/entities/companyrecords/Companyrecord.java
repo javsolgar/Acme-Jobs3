@@ -41,7 +41,7 @@ public class Companyrecord extends DomainEntity {
 
 	//[[(][0-9] {1,4}[)][\\s]]?
 	@NotBlank
-	@Pattern(regexp = "^[+][0-9]{1,3}[\\s]([(][0-9]{1,4}[)][\\s])?[0-9]{6,10}$")
+	@Pattern(regexp = "^([+][0-9]{1,3}[\\s])?([(][0-9]{1,4}[)][\\s])?[0-9]{6,10}$")
 	private String				phone;
 
 	@NotBlank

@@ -128,7 +128,7 @@
 		<property name="ceo" value="Jaiver Solis"/>
 		<property name="description" value="This is the description of another company"/>
 		<property name="website" value="http://www.example.com"/>
-		<property name="phone" value="+4 (123) 1234567890"/>
+		<property name="phone" value="1234567890"/>
 		<property name="email" value="example@example.com"/>
 		<property name="incorporated" value="false"/>
 		<property name="numberStars" value="2"/>
@@ -140,7 +140,7 @@
 		<property name="ceo" value="Sundar Pichai"/>
 		<property name="description" value="This is the description of another company"/>
 		<property name="website" value="http://www.google.com"/>
-		<property name="phone" value="+000 (0000) 0000000"/>
+		<property name="phone" value="(0000) 0000000"/>
 		<property name="email" value="example@gmail.com"/>
 		<property name="incorporated" value="true"/>
 		<property name="numberStars" value="5"/>
