@@ -1,0 +1,11 @@
+administrator.banner.list.label.slogan = Slogan
+administrator.banner.list.label.urlTarget = Url target
+
+administrator.banner.form.label.urlPicture = Url picture:
+administrator.banner.form.label.slogan = Slogan:
+administrator.banner.form.label.urlTarget = Url target:
+
+administrator.banner.form.label.button.return = Return
+administrator.banner.form.button.update = Update
+administrator.banner.form.button.delete = Delete
+administrator.banner.form.button.create = Create
