@@ -64,6 +64,8 @@ master.menu.administrator.banner.list = List of banners
 master.menu.administrator.banner.create = Create a banner
 master.menu.administrator.challenge.list = List of challenges
 master.menu.administrator.challenge.create = Create a challenge
+master.menu.administrator.companyrecord.list = List of company records
+master.menu.administrator.companyrecord.create = Create a company record
 
 # master.menu.provider ########################################################
 
