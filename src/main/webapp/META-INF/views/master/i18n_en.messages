@@ -58,6 +58,8 @@ master.menu.administrator.announcement.form= Create Announcement
 master.menu.administrator.configuration.list = Parameters
 master.menu.administrator.dashboard.show = Indicators
 master.menu.administrator.announcement.create = Create an announcement
+master.menu.administrator.investorsrecord.list= List of investors records
+master.menu.administrator.investorsrecord.create = Create an investor record
 
 # master.menu.provider ########################################################
 

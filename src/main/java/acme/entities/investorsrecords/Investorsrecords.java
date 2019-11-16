@@ -33,40 +33,39 @@ public class Investorsrecords extends DomainEntity {
 	@Max(5)
 	private Integer				numberStars;
 
-
 	// Derivated Atributes -------------------------------------------------------------
-
-	public String getNumberStars() {
-		String stars = "";
-		if (this.numberStars != null) {
-			switch (this.numberStars) {
-			case 0:
-				stars = "-";
-				break;
-
-			case 1:
-				stars = "★";
-				break;
-
-			case 2:
-				stars = "★★";
-				break;
-
-			case 3:
-				stars = "★★★";
-				break;
-
-			case 4:
-				stars = "★★★★";
-				break;
-
-			case 5:
-				stars = "★★★★★";
-				break;
-			}
-
-		}
-		return stars;
-	}
-
+	/*
+	 * public String getNumberStars() {
+	 * String stars = "";
+	 * if (this.numberStars != null) {
+	 * switch (this.numberStars) {
+	 * case 0:
+	 * stars = "-";
+	 * break;
+	 * 
+	 * case 1:
+	 * stars = "★";
+	 * break;
+	 * 
+	 * case 2:
+	 * stars = "★★";
+	 * break;
+	 * 
+	 * case 3:
+	 * stars = "★★★";
+	 * break;
+	 * 
+	 * case 4:
+	 * stars = "★★★★";
+	 * break;
+	 * 
+	 * case 5:
+	 * stars = "★★★★★";
+	 * break;
+	 * }
+	 * 
+	 * }
+	 * return stars;
+	 * }
+	 */
 }
