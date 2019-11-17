@@ -25,7 +25,8 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 	@Override
 	public boolean authorise(final Request<Challenge> request) {
 		assert request != null;
-		return true;
+		boolean b = request.getPrincipal().hasRole(Administrator.class);
+		return b;
 	}
 
 	@Override

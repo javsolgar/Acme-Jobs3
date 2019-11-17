@@ -21,8 +21,8 @@ public class AdministratorInvestorsrecordsUpdateService implements AbstractUpdat
 	@Override
 	public boolean authorise(final Request<Investorsrecords> request) {
 		assert request != null;
-
-		return true;
+		boolean b = request.getPrincipal().hasRole(Administrator.class);
+		return b;
 	}
 
 	@Override

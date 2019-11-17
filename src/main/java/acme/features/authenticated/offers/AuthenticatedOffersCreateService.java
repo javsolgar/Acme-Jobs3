@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.offers.Offers;
+import acme.entities.roles.Consumer;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -27,7 +28,8 @@ public class AuthenticatedOffersCreateService implements AbstractCreateService<A
 	@Override
 	public boolean authorise(final Request<Offers> request) {
 		assert request != null;
-		return true;
+		boolean b = request.getPrincipal().hasRole(Consumer.class);
+		return b;
 	}
 
 	@Override
