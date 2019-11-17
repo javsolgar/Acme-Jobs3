@@ -27,7 +27,8 @@ public class AdministratorAnnouncementCreateService implements AbstractCreateSer
 	@Override
 	public boolean authorise(final Request<Announcement> request) {
 		assert request != null;
-		return true;
+		boolean b = request.getPrincipal().hasRole(Administrator.class);
+		return b;
 	}
 
 	@Override

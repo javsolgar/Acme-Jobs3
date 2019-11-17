@@ -21,7 +21,8 @@ public class AdministratorCompanyRecordsCreateService implements AbstractCreateS
 	@Override
 	public boolean authorise(final Request<Companyrecord> request) {
 		assert request != null;
-		return true;
+		boolean b = request.getPrincipal().hasRole(Administrator.class);
+		return b;
 	}
 
 	@Override
