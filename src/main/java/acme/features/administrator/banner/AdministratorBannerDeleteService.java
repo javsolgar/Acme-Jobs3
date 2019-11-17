@@ -21,7 +21,8 @@ public class AdministratorBannerDeleteService implements AbstractDeleteService<A
 	@Override
 	public boolean authorise(final Request<Banner> request) {
 		assert request != null;
-		return true;
+		boolean b = request.getPrincipal().hasRole(Administrator.class);
+		return b;
 	}
 
 	@Override
