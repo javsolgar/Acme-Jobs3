@@ -24,7 +24,8 @@ public class AdministratorConfigurationUpdateService implements AbstractUpdateSe
 	@Override
 	public boolean authorise(final Request<Configuration> request) {
 		assert request != null;
-		return true;
+		boolean b = request.getPrincipal().hasRole(Administrator.class);
+		return b;
 	}
 
 	@Override
