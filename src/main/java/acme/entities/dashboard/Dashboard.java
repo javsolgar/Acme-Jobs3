@@ -42,4 +42,12 @@ public class Dashboard implements Serializable {
 
 	private List<String>				sectorsOfInverstors;
 
+	private Double						mediaRequest;
+
+	private Double						stdevRequest;
+
+	private Double						mediaOffer;
+
+	private Double						stdevOffer;
+
 }

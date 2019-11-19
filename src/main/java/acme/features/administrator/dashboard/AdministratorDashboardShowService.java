@@ -1,12 +1,16 @@
 
 package acme.features.administrator.dashboard;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import acme.entities.dashboard.Dashboard;
+import acme.entities.offers.Offers;
+import acme.features.authenticated.offers.AuthenticatedOffersRepository;
+import acme.features.authenticated.request.AuthenticatedRequestRepository;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Administrator;
@@ -18,7 +22,13 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	AdministratorDashboardRepository repository;
+	AdministratorDashboardRepository	repository;
+
+	@Autowired
+	AuthenticatedRequestRepository		reqRepository;
+
+	@Autowired
+	AuthenticatedOffersRepository		offerRepository;
 
 
 	// AbstractShowService<Administrator, Dashboard> interface --------------
@@ -36,7 +46,7 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		assert model != null;
 
 		request.unbind(entity, model, "totalAnnouncement", "totalInvestorsRecord", "totalCompanyRecords", "minRewardRequest", "maxRewardRequest", "minRewardOffers", "maxRewardOffers", "companysBySector", "sectorsOfCompanys", "inverstorsBySector",
-			"sectorsOfInverstors");
+			"sectorsOfInverstors", "mediaRequest", "mediaOffer", "stdevRequest", "stdevOffer");
 
 	}
 
@@ -54,6 +64,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setInverstorsBySector(this.getInverstorsBySector());
 		result.setSectorsOfCompanys(this.getSectorsOfCompanys());
 		result.setSectorsOfInverstors(this.getSectorOfInverstors());
+		result.setMediaRequest(this.getMediaRequest());
+		result.setMediaOffer(this.getMediaOffer());
 		return result;
 	}
 
@@ -110,6 +122,42 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 	public List<String> getSectorOfInverstors() {
 		List<String> res = this.repository.getSectorOfInverstors();
 		return res;
+	}
+
+	public Double getMediaRequest() {
+		Double res = this.repository.getMediaRequest();
+		return res;
+	}
+
+	public Double getMediaOffer() {
+		return this.repository.getMediaOffer();
+	}
+
+	public Double getStdevRequest() {
+		Double avg = this.getMediaRequest();
+		Collection<acme.entities.request.Request> requests = this.reqRepository.findManyAll();
+		Double ac = 0.0;
+		for (acme.entities.request.Request r : requests) {
+			Double d = (r.getReward().getAmount() - avg) * (r.getReward().getAmount() - avg);
+			ac = ac + d;
+		}
+		Double res = Math.sqrt(ac - requests.size() - 1);
+		return res;
+
+	}
+
+	public Double getStdevOffer() {
+		Double avg = this.getMediaOffer();
+		Collection<Offers> offers = this.offerRepository.findManyAll();
+		Double ac = 0.0;
+		for (Offers o : offers) {
+			Double d0 = (o.getLowerRange().getAmount() + o.getMajorRange().getAmount()) / 2;
+			Double d = (d0 - avg) * (d0 - avg);
+			ac = ac + d;
+		}
+		Double res = Math.sqrt(ac - offers.size() - 1);
+		return res;
+
 	}
 
 }
