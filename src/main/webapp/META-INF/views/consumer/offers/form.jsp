@@ -13,19 +13,11 @@
 	
 	<acme:form-moment code="consumer.offers.form.label.deadline" path="deadline"/>
 	
-	<jstl:if test="${command != 'create'}">
+	
 	<acme:form-textbox code="consumer.offers.form.label.lower" path="lowerRange"/>
 	<acme:form-textbox code="consumer.offers.form.label.major" path="majorRange"/>
-	</jstl:if>
 	
-	<jstl:if test="${command == 'create'}">
-	<acme:form-double code="consumer.offers.form.label.amountMajor" path="amountMajor"/>
 	
-	<acme:form-double code="consumer.offers.form.label.amountLower" path="amountLower"/>
-	<acme:form-select code="consumer.offers.form.label.currency" path="currency">
-	<acme:form-option code="consumer.offers.form.label.euro" value="EUR"/>
-	</acme:form-select>
-	</jstl:if>
 	
 	<acme:form-textbox code="consumer.offers.form.label.ticker" path="ticker"/>
 	
@@ -34,6 +26,6 @@
 	<acme:form-checkbox code="consumer.offers.form.checkbox.agree" path="accept"/>
 	</jstl:if>
 	
-	<acme:form-submit test ="${command == 'create'}" code="consumer.offers.form.button.create" action="/authenticated/offers/create"/>
+	<acme:form-submit test ="${command == 'create'}" code="consumer.offers.form.button.create" action="/consumer/offers/create"/>
 	<acme:form-return code="consumer.offers.form.label.button.return"/>
 </acme:form>

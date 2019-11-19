@@ -11,7 +11,6 @@ import acme.entities.roles.Consumer;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
-import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractCreateService;
 
 @Service
@@ -35,7 +34,7 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "moment", "lowerRange", "majorRange", "amountLower", "amountMajor", "currency", "accept");
+		request.bind(entity, errors, "currency", "accept");
 
 	}
 
@@ -44,7 +43,7 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title", "description", "deadline", "ticker");
+		request.unbind(entity, model, "title", "description", "deadline", "ticker", "moment", "lowerRange", "majorRange");
 
 	}
 
@@ -62,13 +61,32 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		boolean isDuplicated, isRange, isAccepted;
+		boolean isDuplicated, isRange, isAccepted, isFuture, hasDeadline, hasMajorRange, hasLowerRange;
+		Date dateNow, deadline;
+
+		dateNow = new Date(System.currentTimeMillis() - 1);
+
+		hasDeadline = entity.getDeadline() != null;
+		errors.state(request, hasDeadline, "deadline", "administrator.offers.error.must-have-deadline");
+
+		if (hasDeadline) {
+			deadline = entity.getDeadline();
+			isFuture = dateNow.before(deadline);
+			errors.state(request, isFuture, "deadline", "administrator.offers.error.must-be-future");
+
+		}
 
 		isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
-		errors.state(request, !isDuplicated, "ticker", "authenticated.offers.error.tickerDuplicated");
+		errors.state(request, !isDuplicated, "ticker", "consumer.offers.error.tickerDuplicated");
 
-		isRange = request.getModel().getDouble("amountMajor") > request.getModel().getDouble("amountLower");
-		errors.state(request, isRange, "amountMajor", "authenticated.offers.error.notRange");
+		isRange = entity.getMajorRange().getAmount() > entity.getLowerRange().getAmount();
+		errors.state(request, isRange, "amountMajor", "consumer.offers.error.notRange");
+
+		hasMajorRange = entity.getMajorRange().getAmount() > entity.getLowerRange().getAmount();
+		errors.state(request, hasMajorRange, "amountMajor", "consumer.offers.error.notRange");
+
+		hasLowerRange = entity.getMajorRange().getAmount() > entity.getLowerRange().getAmount();
+		errors.state(request, hasLowerRange, "amountMajor", "consumer.offers.error.notRange");
 
 		isAccepted = request.getModel().getBoolean("accept");
 		errors.state(request, isAccepted, "accept", "authenticated.offers.error.must-accept");
@@ -77,28 +95,12 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 
 	@Override
 	public void create(final Request<Offers> request, final Offers entity) {
+		assert request != null;
+		assert entity != null;
 		Date moment;
-		Double amountMajor;
-		Double amountLower;
-		Money moneyMajor;
-		Money moneyLower;
-		String currency;
 
-		moneyMajor = new Money();
-		moneyLower = new Money();
 		moment = new Date(System.currentTimeMillis() - 1);
-		amountMajor = request.getModel().getDouble("amountMajor");
-		amountLower = request.getModel().getDouble("amountLower");
-		currency = request.getModel().getString("currency");
-
-		moneyMajor.setAmount(amountMajor);
-		moneyLower.setAmount(amountLower);
-		moneyMajor.setCurrency(currency);
-		moneyLower.setCurrency(currency);
-
 		entity.setMoment(moment);
-		entity.setMajorRange(moneyMajor);
-		entity.setLowerRange(moneyLower);
 
 		this.repository.save(entity);
 
