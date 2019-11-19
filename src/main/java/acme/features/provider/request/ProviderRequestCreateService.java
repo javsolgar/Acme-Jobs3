@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.request;
+package acme.features.provider.request;
 
 import java.util.Date;
 
@@ -11,15 +11,14 @@ import acme.entities.roles.Provider;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.datatypes.Money;
-import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AuthenticatedRequestCreateService implements AbstractCreateService<Authenticated, Request> {
+public class ProviderRequestCreateService implements AbstractCreateService<Provider, Request> {
 
 	//	Internal State -------------------------------------------------------------------------------------------------------------------
 	@Autowired
-	AuthenticatedRequestRepository repository;
+	ProviderRequestRepository repository;
 
 
 	// Abstract<Provider, Request> -------------------------------------------------------------------------------------------------------
@@ -65,10 +64,10 @@ public class AuthenticatedRequestCreateService implements AbstractCreateService<
 		boolean isDuplicated, isAccepted;
 
 		isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
-		errors.state(request, !isDuplicated, "ticker", "authenticated.request.error.tickerDuplicated");
+		errors.state(request, !isDuplicated, "ticker", "provider.request.error.tickerDuplicated");
 
 		isAccepted = request.getModel().getBoolean("accept");
-		errors.state(request, isAccepted, "accept", "authenticated.request.error.must-accept");
+		errors.state(request, isAccepted, "accept", "provider.request.error.must-accept");
 	}
 
 	@Override

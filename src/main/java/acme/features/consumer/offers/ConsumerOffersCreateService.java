@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.offers;
+package acme.features.consumer.offers;
 
 import java.util.Date;
 
@@ -12,15 +12,14 @@ import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.datatypes.Money;
-import acme.framework.entities.Authenticated;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AuthenticatedOffersCreateService implements AbstractCreateService<Authenticated, Offers> {
+public class ConsumerOffersCreateService implements AbstractCreateService<Consumer, Offers> {
 
 	//	Internal State -------------------------------------------------------------------------------------------------------------------
 	@Autowired
-	AuthenticatedOffersRepository repository;
+	ConsumerOffersRepository repository;
 
 
 	// Abstract<Provider, Request> -------------------------------------------------------------------------------------------------------
@@ -28,8 +27,7 @@ public class AuthenticatedOffersCreateService implements AbstractCreateService<A
 	@Override
 	public boolean authorise(final Request<Offers> request) {
 		assert request != null;
-		boolean b = request.getPrincipal().hasRole(Consumer.class);
-		return b;
+		return true;
 	}
 
 	@Override

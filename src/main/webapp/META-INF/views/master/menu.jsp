@@ -65,8 +65,8 @@
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.provider.requestList" action="/authenticated/request/list"/>
-			<acme:menu-suboption code="master.menu.provider.requestCreate" action="/authenticated/request/create"/>
+			<acme:menu-suboption code="master.menu.provider.requestList" action="/provider/request/list"/>
+			<acme:menu-suboption code="master.menu.provider.requestCreate" action="/provider/request/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
@@ -74,8 +74,8 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.consumer.requestList" action="/authenticated/request/list"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.consumer.OfferList" action="/authenticated/offers/list"/>
-			<acme:menu-suboption code="master.menu.consumer.OfferCreate" action="/authenticated/offers/create"/>
+			<acme:menu-suboption code="master.menu.consumer.OfferList" action="/consumer/offers/list"/>
+			<acme:menu-suboption code="master.menu.consumer.OfferCreate" action="/consumer/offers/create"/>
 		</acme:menu-option>
 	</acme:menu-left>
 
