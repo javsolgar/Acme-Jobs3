@@ -18,11 +18,11 @@
 
 <tiles-definitions>
 	
-	<definition name="administrator/banner/list" extends="master">		
-		<put-attribute name="body" type="template" value="../administrator/banner/list.jsp" />
+	<definition name="administrator/comercialbanner/list" extends="master">		
+		<put-attribute name="body" type="template" value="../administrator/comercialbanner/list.jsp" />
 	</definition>
-	<definition name="administrator/banner/form" extends="master">
-		<put-attribute name="body" type="template" value="../administrator/banner/form.jsp" />
+	<definition name="administrator/comercialbanner/form" extends="master">
+		<put-attribute name="body" type="template" value="../administrator/comercialbanner/form.jsp" />
 	</definition>
 
 </tiles-definitions>

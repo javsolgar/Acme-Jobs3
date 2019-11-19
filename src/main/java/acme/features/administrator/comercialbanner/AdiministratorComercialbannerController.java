@@ -1,5 +1,5 @@
 
-package acme.features.administrator.banner;
+package acme.features.administrator.comercialbanner;
 
 import javax.annotation.PostConstruct;
 
@@ -7,29 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.entities.banner.Banner;
+import acme.entities.banner.ComercialBanner;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
 import acme.framework.entities.Administrator;
 
 @Controller
-@RequestMapping("/administrator/banner/")
-public class AdministratorBannerController extends AbstractController<Administrator, Banner> {
+@RequestMapping("/administrator/comercialbanner/")
+public class AdiministratorComercialbannerController extends AbstractController<Administrator, ComercialBanner> {
 
 	@Autowired
-	private AdministratorBannerListService		listService;
+	private AdministratorComercialbannerListService		listService;
 
 	@Autowired
-	private AdministratorBannerShowService		showService;
+	private AdministratorComercialbannerShowService		showService;
 
 	@Autowired
-	private AdministratorBannerCreateService	createService;
+	private AdministratorComercialbannerCreateService	createService;
 
 	@Autowired
-	private AdministratorBannerUpdateService	updateService;
+	private AdministratorComercialbannerUpdateService	updateService;
 
 	@Autowired
-	private AdministratorBannerDeleteService	deleteService;
+	private AdministratorComercialbannerDeleteService	deleteService;
 
 
 	@PostConstruct
