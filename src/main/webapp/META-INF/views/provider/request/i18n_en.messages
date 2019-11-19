@@ -24,5 +24,6 @@ provider.request.form.label.euro = Euro
 
 
 provider.request.error.tickerDuplicated = The ticker musn't match with the ticker of any request created previously
-provider.request.error.must-accept = You must accept the condition, wich says that you can't delete or update the request
-
+provider.request.error.must-accept = You must accept the condition, which says that you can't delete or update the request
+provider.request.error.must-be-future = The deadline must be a future date.
+provider.request.error.must-not-be-null = The date musn't be null.

@@ -13,16 +13,7 @@
 	
 	<acme:form-moment code="provider.request.form.label.deadline" path="deadLine"/>
 	
-	<jstl:if test="${command != 'create'}">
-	<acme:form-moment code="provider.request.form.label.reward" path="reward"  readonly="true"/>
-	</jstl:if>
-	
-	<jstl:if test="${command == 'create'}">
-	<acme:form-double code="provider.request.form.label.amount" path="amount"/>
-	<acme:form-select code="provider.request.form.label.currency" path="currency">
-	<acme:form-option code="provider.request.form.label.euro" value="EUR"/>
-	</acme:form-select>
-	</jstl:if>
+	<acme:form-money code="provider.request.form.label.reward" path="reward"/>
 
 	<acme:form-textbox code="provider.request.form.label.ticker" path="ticker"/>
 	<jstl:if test="${command == 'create'}">
