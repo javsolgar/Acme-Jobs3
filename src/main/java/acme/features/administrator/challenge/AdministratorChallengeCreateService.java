@@ -68,6 +68,8 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 		boolean goldGoalFirst, goldSilverSecond, goldBronzeThird;
 		boolean hasGoldReward, hasSilverReward, hasBronzeReward;
 		Money rewardGold, rewardSilver, rewardBronze;
+		boolean goldEUR, silverEUR, bronzeEUR;
+		String currentGold, currentSilver, currentBronze;
 
 		dateNow = new Date(System.currentTimeMillis() - 1);
 
@@ -99,23 +101,40 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 		errors.state(request, hasBronzeReward, "rewardBronze", "administrator.challenge.error.must-have-reward");
 
 		if (hasGoldReward && hasSilverReward && hasBronzeReward) {
-
+			Money euro = new Money();
+			euro.setCurrency("€");
 			rewardGold = entity.getRewardGold();
 			rewardSilver = entity.getRewardSilver();
 			rewardBronze = entity.getRewardBronze();
 
-			goldGoalFirst = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardGold.getAmount() >= rewardBronze.getAmount();
-			errors.state(request, goldGoalFirst, "rewardGold", "administrator.challenge.error.goldFirst");
+			currentGold = rewardGold.getCurrency();
+			currentSilver = rewardSilver.getCurrency();
+			currentBronze = rewardBronze.getCurrency();
 
-			if (goldGoalFirst) {
+			goldEUR = currentGold.equals(euro.getCurrency());
+			errors.state(request, goldEUR, "rewardGold", "administrator.challenge.error.must-be-eur");
 
-				goldSilverSecond = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardSilver.getAmount() >= rewardBronze.getAmount();
-				errors.state(request, goldSilverSecond, "rewardSilver", "administrator.challenge.error.silverSecond");
+			silverEUR = currentSilver.equals(euro.getCurrency());
+			errors.state(request, silverEUR, "rewardSilver", "administrator.challenge.error.must-be-eur");
 
-				if (goldSilverSecond) {
+			bronzeEUR = currentBronze.equals(euro.getCurrency());
+			errors.state(request, bronzeEUR, "rewardBronze", "administrator.challenge.error.must-be-eur");
 
-					goldBronzeThird = rewardGold.getAmount() >= rewardBronze.getAmount() && rewardSilver.getAmount() >= rewardBronze.getAmount();
-					errors.state(request, goldBronzeThird, "rewardBronze", "administrator.challenge.error.bronzeThird");
+			if (goldEUR && silverEUR && bronzeEUR) {
+
+				goldGoalFirst = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardGold.getAmount() >= rewardBronze.getAmount();
+				errors.state(request, goldGoalFirst, "rewardGold", "administrator.challenge.error.goldFirst");
+
+				if (goldGoalFirst) {
+
+					goldSilverSecond = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardSilver.getAmount() >= rewardBronze.getAmount();
+					errors.state(request, goldSilverSecond, "rewardSilver", "administrator.challenge.error.silverSecond");
+
+					if (goldSilverSecond) {
+
+						goldBronzeThird = rewardGold.getAmount() >= rewardBronze.getAmount() && rewardSilver.getAmount() >= rewardBronze.getAmount();
+						errors.state(request, goldBronzeThird, "rewardBronze", "administrator.challenge.error.bronzeThird");
+					}
 				}
 			}
 		}

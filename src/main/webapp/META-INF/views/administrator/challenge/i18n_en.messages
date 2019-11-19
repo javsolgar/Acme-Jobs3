@@ -26,4 +26,6 @@ administrator.challenge.error.goldFirst = The gold's reward must be bigger or at
 administrator.challenge.error.silverSecond = The silver's reward must be bigger of bronze's reward and lower than gold's reward or at least equal to others rewards 
 administrator.challenge.error.bronzeThird = The bronze's reward must be the lower reward or at least equal to the other rewards
 administrator.challenge.error.must-have-reward = The parameter musn't be empty.
-administrator.challenge.error.must-be-future= The date must be later to the actual date.
+administrator.challenge.error.must-be-future= The date must be later than the actual date.
+administrator.challenge.error.must-have-deadline = The deadline musn't be empty.
+administrator.challenge.error.must-be-eur = The currency of the reward must be Euros (€).

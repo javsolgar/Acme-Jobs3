@@ -27,5 +27,7 @@ administrator.challenge.error.silverSecond = La recompensa de plata debe de ser 
 administrator.challenge.error.bronzeThird = La recompensa de bronze debe de ser la más baja, o al menos igual que las otras
 administrator.challenge.error.must-have-reward = El campo no puede estar vacío.
 administrator.challenge.error.must-be-future = La fecha debe ser posterior a la actual.
+administrator.challenge.error.must-have-deadline = La fecha límite no puede estar vacía.
+administrator.challenge.error.must-be-eur = La moneda de la recompensa debe de ser Euros (€).
 
 
