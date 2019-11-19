@@ -15,15 +15,12 @@ administrator.challenge.form.label.rewardSilver = Silver Reward:
 administrator.challenge.form.label.goalSilver = Silver Goal:
 administrator.challenge.form.label.rewardBronze = Bronze Reward:
 administrator.challenge.form.label.goalBronze = Bronze Goal:
-administrator.request.form.label.amountGold = Gold Reward:
-administrator.request.form.label.amountSilver = Silver Reward:
-administrator.request.form.label.amountBronze= Bronze Reward:
-administrator.request.form.label.currency = Currency:
 administrator.challenge.form.label.ticker = Ticker:
 administrator.challenge.form.label.button.return = Return
 administrator.challenge.form.button.create = Create
 administrator.challenge.form.button.update = Update
 administrator.challenge.form.button.delete = Delete
 
+administrator.challenge.error.must-have-goal = The goal musn't be empty
 
-administrator.request.form.label.euro = Euro
+
