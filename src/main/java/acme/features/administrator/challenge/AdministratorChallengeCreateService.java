@@ -71,38 +71,38 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 
 		dateNow = new Date(System.currentTimeMillis() - 1);
 
-		hasDeadline = request.getModel().getString("deadline") != null && request.getModel().getString("deadline") != "";
+		hasDeadline = entity.getDeadline() != null;
 		errors.state(request, hasDeadline, "deadline", "administrator.challenge.error.must-have-deadline");
 
 		if (hasDeadline) {
-			deadline = new ;
-
+			deadline = entity.getDeadline();
 			isFuture = dateNow.before(deadline);
 			errors.state(request, isFuture, "deadline", "administrator.challenge.error.must-be-future");
+
 		}
-		hasGoldGoal = request.getModel().getString("goalGold") != null;
+		hasGoldGoal = entity.getGoalGold() != null;
 		errors.state(request, hasGoldGoal, "goalGold", "administrator.challenge.error.must-have-goal");
 
-		hasSilverGoal = request.getModel().getString("goalSilver") != null;
+		hasSilverGoal = entity.getGoalSilver() != null;
 		errors.state(request, hasSilverGoal, "goalGold", "administrator.challenge.error.must-have-goal");
 
-		hasBronzeGoal = request.getModel().getString("goalBronze") != null;
+		hasBronzeGoal = entity.getGoalBronze() != null;
 		errors.state(request, hasBronzeGoal, "goalGold", "administrator.challenge.error.must-have-goal");
 
-		hasGoldReward = request.getModel().getAttribute("rewardGold") != null && request.getModel().getAttribute("rewardGold") != "";
+		hasGoldReward = entity.getRewardGold() != null;
 		errors.state(request, hasGoldReward, "rewardGold", "administrator.challenge.error.must-have-reward");
 
-		hasSilverReward = request.getModel().getAttribute("rewardSilver") != null && request.getModel().getAttribute("rewardSilver") != "";
+		hasSilverReward = entity.getRewardSilver() != null;
 		errors.state(request, hasSilverReward, "rewardSilver", "administrator.challenge.error.must-have-reward");
 
-		hasBronzeReward = request.getModel().getAttribute("rewardBronze") != null && request.getModel().getAttribute("rewardBronze") != "";
+		hasBronzeReward = entity.getRewardBronze() != null;
 		errors.state(request, hasBronzeReward, "rewardBronze", "administrator.challenge.error.must-have-reward");
 
 		if (hasGoldReward && hasSilverReward && hasBronzeReward) {
 
-			rewardGold = (Money) request.getModel().getAttribute("rewardGold");
-			rewardSilver = (Money) request.getModel().getAttribute("rewardSilver");
-			rewardBronze = (Money) request.getModel().getAttribute("rewardBronze");
+			rewardGold = entity.getRewardGold();
+			rewardSilver = entity.getRewardSilver();
+			rewardBronze = entity.getRewardBronze();
 
 			goldGoalFirst = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardGold.getAmount() >= rewardBronze.getAmount();
 			errors.state(request, goldGoalFirst, "rewardGold", "administrator.challenge.error.goldFirst");
