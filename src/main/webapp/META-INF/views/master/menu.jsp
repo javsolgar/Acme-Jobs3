@@ -43,26 +43,23 @@
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list"/>
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
+			<acme:menu-suboption code="master.menu.administrator.configuration.list" action="/administrator/configuration/show" />
+			<acme:menu-suboption code="master.menu.administrator.dashboard.show" action="/administrator/dashboard/show" />
+			<acme:menu-suboption code="master.menu.administrator.banner.list" action="/administrator/banner/list" />
+			<acme:menu-suboption code="master.menu.administrator.banner.create" action="/administrator/banner/create" />	
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.announcement.list" action="/administrator/announcement/list"/>
 			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create"/>
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.challenge.list" action="/administrator/challenge/list"/>
 			<acme:menu-suboption code="master.menu.administrator.challenge.create" action="/administrator/challenge/create"/>
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.investorsrecord.list" action="/administrator/investorsrecords/list"/>
 			<acme:menu-suboption code="master.menu.administrator.investorsrecord.create" action="/administrator/investorsrecords/create"/>
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.configuration.list" action="/administrator/configuration/show" />
-			<acme:menu-suboption code="master.menu.administrator.dashboard.show" action="/administrator/dashboard/show" />
-			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.administrator.banner.list" action="/administrator/banner/list" />
-			<acme:menu-suboption code="master.menu.administrator.banner.create" action="/administrator/banner/create" />	
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.companyrecord.list" action="/administrator/companyrecord/list" />
-			<acme:menu-suboption code="master.menu.administrator.companyrecord.create" action="/administrator/companyrecord/create" />
+			<acme:menu-suboption code="master.menu.administrator.companyrecord.create" action="/administrator/companyrecord/create" />			
+
+			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
