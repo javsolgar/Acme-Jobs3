@@ -24,8 +24,7 @@ public class AdministratorChallengeUpdateService implements AbstractUpdateServic
 	@Override
 	public boolean authorise(final Request<Challenge> request) {
 		assert request != null;
-		boolean b = request.getPrincipal().hasRole(Administrator.class);
-		return b;
+		return true;
 	}
 
 	@Override
@@ -33,7 +32,7 @@ public class AdministratorChallengeUpdateService implements AbstractUpdateServic
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "amountGold", "currencyGold", "amountSilver", "currencySilver", "amountBronze", "currencyBronze");
+		request.bind(entity, errors);
 
 	}
 
@@ -43,7 +42,6 @@ public class AdministratorChallengeUpdateService implements AbstractUpdateServic
 		assert entity != null;
 		assert model != null;
 		request.unbind(entity, model, "title", "description", "deadline", "goalGold", "goalSilver", "goalBronze", "rewardGold", "rewardSilver", "rewardBronze");
-
 	}
 
 	@Override
@@ -61,6 +59,17 @@ public class AdministratorChallengeUpdateService implements AbstractUpdateServic
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
+
+		boolean hasGoldGoal, hasSilverGoal, hasBronzeGoal;
+
+		hasGoldGoal = request.getModel().getString("goalGold") != null;
+		errors.state(request, hasGoldGoal, "goalGold", "administrator.challenge.error.must-have-goal");
+
+		hasSilverGoal = request.getModel().getString("goalSilver") != null;
+		errors.state(request, hasSilverGoal, "goalGold", "administrator.challenge.error.must-have-goal");
+
+		hasBronzeGoal = request.getModel().getString("goalBronze") != null;
+		errors.state(request, hasBronzeGoal, "goalGold", "administrator.challenge.error.must-have-goal");
 
 	}
 

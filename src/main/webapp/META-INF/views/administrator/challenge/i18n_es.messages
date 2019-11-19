@@ -15,14 +15,10 @@ administrator.challenge.form.label.rewardSilver = Recompensa Plata:
 administrator.challenge.form.label.goalSilver = Objetivo Plata:
 administrator.challenge.form.label.rewardBronze = Recompensa Bronce:
 administrator.challenge.form.label.goalBronze = Objetivo Bronce:
-administrator.request.form.label.amountGold = Recompensa Oro:
-administrator.request.form.label.amountSilver = Recompensa Plata:
-administrator.request.form.label.amountBronze= Recompensa Bronce:
-administrator.request.form.label.currency = Moneda:
 administrator.challenge.form.label.ticker = Ticker:
 administrator.challenge.form.label.button.return = Volver
 administrator.challenge.form.button.create = Crear
 administrator.challenge.form.button.update = Actualizar
 administrator.challenge.form.button.delete = Borrar
 
-administrator.request.form.label.euro = Euro
+administrator.challenge.error.must-have-goal = El campo del objetivo no puede estar vacío
