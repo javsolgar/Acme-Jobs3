@@ -517,10 +517,10 @@ has v</panel_attributes>
 / maxRewardRequest: Double
 / minRewardOffers: Double
 / maxRewardOffers: Double
-/ companysBySector: Collection&lt;Integer&gt;
-/ sectorsOfCompanys: Collection&lt;String&gt;
-/ inverstorsBySector: Collection&lt;Integer&gt;	
-/ sectorsOfInverstors: Collection&lt;String&gt;	</panel_attributes>
+/ companysBySector: List&lt;Integer&gt;
+/ sectorsOfCompanys: List&lt;String&gt;
+/ inverstorsBySector: List&lt;Integer&gt;	
+/ sectorsOfInverstors: List&lt;String&gt;	</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
