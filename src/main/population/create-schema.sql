@@ -57,7 +57,7 @@
         primary key (`id`)
     ) engine=InnoDB;
 
-    create table `comercial_banner` (
+    create table `comercialbanner` (
        `id` integer not null,
         `version` integer not null,
         `slogan` varchar(255),

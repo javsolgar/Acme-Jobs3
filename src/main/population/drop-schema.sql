@@ -31,7 +31,7 @@
 
     drop table if exists `challenge`;
 
-    drop table if exists `comercial_banner`;
+    drop table if exists `comercialbanner`;
 
     drop table if exists `companyrecord`;
 

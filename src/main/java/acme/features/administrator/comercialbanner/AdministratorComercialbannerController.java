@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import acme.entities.banner.ComercialBanner;
+import acme.entities.comercialbanner.Comercialbanner;
 import acme.framework.components.BasicCommand;
 import acme.framework.controllers.AbstractController;
 import acme.framework.entities.Administrator;
 
 @Controller
 @RequestMapping("/administrator/comercialbanner/")
-public class AdministratorComercialbannerController extends AbstractController<Administrator, ComercialBanner> {
+public class AdministratorComercialbannerController extends AbstractController<Administrator, Comercialbanner> {
 
 	@Autowired
 	private AdministratorComercialbannerListService		listService;

@@ -1,10 +1,11 @@
 
-package acme.entities.banner;
+package acme.entities.noncomercialbanner;
 
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.URL;
 
+import acme.entities.banner.Banner;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,10 +16,10 @@ public class NonComercialBanner extends Banner {
 
 	// Serialization Identify ------------------------------------------------------------------------------------------------
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long serialVersionUID = 1L;
 
 	//	Atributes	----------------------------------------------------------------------------------------------------------
 
 	@URL
-	private String				jingle;
+	private String jingle;
 }
