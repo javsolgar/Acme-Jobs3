@@ -44,4 +44,10 @@ public interface AdministratorDashboardRepository extends AbstractRepository {
 	@Query("select sector as Investorsrecords from Investorsrecords group by sector")
 	List<String> getSectorOfInverstors();
 
+	@Query("select avg(a.reward.amount) from Request a")
+	Double getMediaRequest();
+
+	@Query("select avg((a.majorRange.amount + a.lowerRange.amount)/2) from Offers a")
+	Double getMediaOffer();
+
 }

@@ -1,6 +1,8 @@
 
 package acme.features.administrator.challenge;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,8 +27,7 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 	@Override
 	public boolean authorise(final Request<Challenge> request) {
 		assert request != null;
-		boolean b = request.getPrincipal().hasRole(Administrator.class);
-		return b;
+		return true;
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "amountGold", "currencyGold", "amountSilver", "currencySilver", "amountBronze", "currencyBronze", "rewardGold", "rewardSilver", "rewardBronze");
+		request.bind(entity, errors);
 
 	}
 
@@ -43,7 +44,7 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title", "description", "deadline", "goalGold", "goalSilver", "goalBronze");
+		request.unbind(entity, model, "title", "description", "deadline", "goalGold", "goalSilver", "goalBronze", "rewardGold", "rewardSilver", "rewardBronze");
 
 	}
 
@@ -61,40 +62,87 @@ public class AdministratorChallengeCreateService implements AbstractCreateServic
 		assert entity != null;
 		assert errors != null;
 
+		Date dateNow, deadline;
+		boolean isFuture, hasDeadline;
+		boolean hasGoldGoal, hasSilverGoal, hasBronzeGoal;
+		boolean goldGoalFirst, goldSilverSecond, goldBronzeThird;
+		boolean hasGoldReward, hasSilverReward, hasBronzeReward;
+		Money rewardGold, rewardSilver, rewardBronze;
+		boolean goldEUR, silverEUR, bronzeEUR;
+		String currentGold, currentSilver, currentBronze;
+
+		dateNow = new Date(System.currentTimeMillis() - 1);
+
+		hasDeadline = entity.getDeadline() != null;
+		errors.state(request, hasDeadline, "deadline", "administrator.challenge.error.must-have-deadline");
+
+		if (hasDeadline) {
+			deadline = entity.getDeadline();
+			isFuture = dateNow.before(deadline);
+			errors.state(request, isFuture, "deadline", "administrator.challenge.error.must-be-future");
+
+		}
+		hasGoldGoal = entity.getGoalGold() != null;
+		errors.state(request, hasGoldGoal, "goalGold", "administrator.challenge.error.must-have-goal");
+
+		hasSilverGoal = entity.getGoalSilver() != null;
+		errors.state(request, hasSilverGoal, "goalGold", "administrator.challenge.error.must-have-goal");
+
+		hasBronzeGoal = entity.getGoalBronze() != null;
+		errors.state(request, hasBronzeGoal, "goalGold", "administrator.challenge.error.must-have-goal");
+
+		hasGoldReward = entity.getRewardGold() != null;
+		errors.state(request, hasGoldReward, "rewardGold", "administrator.challenge.error.must-have-reward");
+
+		hasSilverReward = entity.getRewardSilver() != null;
+		errors.state(request, hasSilverReward, "rewardSilver", "administrator.challenge.error.must-have-reward");
+
+		hasBronzeReward = entity.getRewardBronze() != null;
+		errors.state(request, hasBronzeReward, "rewardBronze", "administrator.challenge.error.must-have-reward");
+
+		if (hasGoldReward && hasSilverReward && hasBronzeReward) {
+			Money euro = new Money();
+			euro.setCurrency("€");
+			rewardGold = entity.getRewardGold();
+			rewardSilver = entity.getRewardSilver();
+			rewardBronze = entity.getRewardBronze();
+
+			currentGold = rewardGold.getCurrency();
+			currentSilver = rewardSilver.getCurrency();
+			currentBronze = rewardBronze.getCurrency();
+
+			goldEUR = currentGold.equals(euro.getCurrency());
+			errors.state(request, goldEUR, "rewardGold", "administrator.challenge.error.must-be-eur");
+
+			silverEUR = currentSilver.equals(euro.getCurrency());
+			errors.state(request, silverEUR, "rewardSilver", "administrator.challenge.error.must-be-eur");
+
+			bronzeEUR = currentBronze.equals(euro.getCurrency());
+			errors.state(request, bronzeEUR, "rewardBronze", "administrator.challenge.error.must-be-eur");
+
+			if (goldEUR && silverEUR && bronzeEUR) {
+
+				goldGoalFirst = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardGold.getAmount() >= rewardBronze.getAmount();
+				errors.state(request, goldGoalFirst, "rewardGold", "administrator.challenge.error.goldFirst");
+
+				if (goldGoalFirst) {
+
+					goldSilverSecond = rewardGold.getAmount() >= rewardSilver.getAmount() && rewardSilver.getAmount() >= rewardBronze.getAmount();
+					errors.state(request, goldSilverSecond, "rewardSilver", "administrator.challenge.error.silverSecond");
+
+					if (goldSilverSecond) {
+
+						goldBronzeThird = rewardGold.getAmount() >= rewardBronze.getAmount() && rewardSilver.getAmount() >= rewardBronze.getAmount();
+						errors.state(request, goldBronzeThird, "rewardBronze", "administrator.challenge.error.bronzeThird");
+					}
+				}
+			}
+		}
+
 	}
 
 	@Override
 	public void create(final Request<Challenge> request, final Challenge entity) {
-
-		Double amountGold, amountSilver, amountBronze;
-		String currencyGold, currencySilver, currencyBronze;
-		Money rewardGold, rewardSilver, rewardBronze;
-
-		rewardGold = new Money();
-		rewardSilver = new Money();
-		rewardBronze = new Money();
-
-		amountGold = request.getModel().getDouble("amountGold");
-		amountSilver = request.getModel().getDouble("amountSilver");
-		amountBronze = request.getModel().getDouble("amountBronze");
-
-		currencyGold = request.getModel().getString("currencyGold");
-		currencySilver = request.getModel().getString("currencySilver");
-		currencyBronze = request.getModel().getString("currencyBronze");
-
-		rewardGold.setAmount(amountGold);
-		rewardGold.setCurrency(currencyGold);
-
-		rewardSilver.setAmount(amountSilver);
-		rewardSilver.setCurrency(currencySilver);
-
-		rewardBronze.setAmount(amountBronze);
-		rewardBronze.setCurrency(currencyBronze);
-
-		entity.setRewardGold(rewardGold);
-		entity.setRewardSilver(rewardSilver);
-		entity.setRewardBronze(rewardBronze);
-
 		this.repository.save(entity);
 
 	}

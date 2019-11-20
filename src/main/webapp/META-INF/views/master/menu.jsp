@@ -43,12 +43,14 @@
 
 		<acme:menu-option code="master.menu.administrator" access="hasRole('Administrator')">
 			<acme:menu-suboption code="master.menu.administrator.user-accounts" action="/administrator/user-account/list"/>
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shutdown" action="/master/shutdown"/>
+			<acme:menu-suboption code="master.menu.administrator.configuration.list" action="/administrator/configuration/show" />
+			<acme:menu-suboption code="master.menu.administrator.dashboard.show" action="/administrator/dashboard/show" />
+			<acme:menu-suboption code="master.menu.administrator.banner.list" action="/administrator/banner/list" />
+			<acme:menu-suboption code="master.menu.administrator.banner.create" action="/administrator/banner/create" />	
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.announcement.list" action="/administrator/announcement/list"/>
 			<acme:menu-suboption code="master.menu.administrator.announcement.create" action="/administrator/announcement/create"/>
-			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.challenge.list" action="/administrator/challenge/list"/>
 			<acme:menu-suboption code="master.menu.administrator.challenge.create" action="/administrator/challenge/create"/>
 			<acme:menu-separator/>
@@ -64,15 +66,18 @@
 			<acme:menu-suboption code="master.menu.administrator.noncomercialbanner.list" action="/administrator/noncomercialbanner/list" />
 			<acme:menu-suboption code="master.menu.administrator.noncomercialbanner.create" action="/administrator/noncomercialbanner/create" />	
 			<acme:menu-separator/>
+
 			<acme:menu-suboption code="master.menu.administrator.companyrecord.list" action="/administrator/companyrecord/list" />
-			<acme:menu-suboption code="master.menu.administrator.companyrecord.create" action="/administrator/companyrecord/create" />
+			<acme:menu-suboption code="master.menu.administrator.companyrecord.create" action="/administrator/companyrecord/create" />			
+
+			
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRole('Provider')">
 			<acme:menu-suboption code="master.menu.provider.favourite-link" action="http://www.example.com/"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.provider.requestList" action="/authenticated/request/list"/>
-			<acme:menu-suboption code="master.menu.provider.requestCreate" action="/authenticated/request/create"/>
+			<acme:menu-suboption code="master.menu.provider.requestList" action="/provider/request/list"/>
+			<acme:menu-suboption code="master.menu.provider.requestCreate" action="/provider/request/create"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.consumer" access="hasRole('Consumer')">
@@ -80,8 +85,8 @@
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.consumer.requestList" action="/authenticated/request/list"/>
 			<acme:menu-separator/>
-			<acme:menu-suboption code="master.menu.consumer.OfferList" action="/authenticated/offers/list"/>
-			<acme:menu-suboption code="master.menu.consumer.OfferCreate" action="/authenticated/offers/create"/>
+			<acme:menu-suboption code="master.menu.consumer.OfferList" action="/consumer/offers/list"/>
+			<acme:menu-suboption code="master.menu.consumer.OfferCreate" action="/consumer/offers/create"/>
 		</acme:menu-option>
 	</acme:menu-left>
 
