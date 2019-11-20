@@ -40,7 +40,7 @@ public class AdministratorComercialbannerUpdateService implements AbstractUpdate
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "urlPicture", "slogan", "urlTarget");
+		request.unbind(entity, model, "urlPicture", "slogan", "urlTarget", "creditCard");
 	}
 
 	@Override

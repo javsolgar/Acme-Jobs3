@@ -12,7 +12,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class NonComercialBanner extends Banner {
+public class Noncomercialbanner extends Banner {
 
 	// Serialization Identify ------------------------------------------------------------------------------------------------
 

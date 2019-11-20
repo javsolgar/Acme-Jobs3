@@ -41,7 +41,7 @@
 
     drop table if exists `investorsrecords`;
 
-    drop table if exists `non_comercial_banner`;
+    drop table if exists `noncomercialbanner`;
 
     drop table if exists `offers`;
 

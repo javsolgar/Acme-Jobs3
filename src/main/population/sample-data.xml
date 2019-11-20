@@ -244,14 +244,14 @@
 	</bean>
 	
 	<!--Non Comercial Banner  -->
-	<bean id="nonComercialBanner01" class="acme.entities.noncomercialbanner.NonComercialBanner">
+	<bean id="nonComercialBanner01" class="acme.entities.noncomercialbanner.Noncomercialbanner">
 		<property name="urlPicture" value="https://static1.seekingalpha.com/images/marketing_images/numbers_words_signs/words_phrases/jobs_gear.jpeg"/>
 		<property name="slogan" value="get your job today!"/>
 		<property name="urlTarget" value="https://es.wikipedia.org/wiki/Trabajo_(economía)"/>
 		<property name="jingle"><null/></property>
 	</bean>
 	
-	<bean id="nonComercialBanner02" class="acme.entities.noncomercialbanner.NonComercialBanner">
+	<bean id="nonComercialBanner02" class="acme.entities.noncomercialbanner.Noncomercialbanner">
 		<property name="urlPicture" value="https://www.informatica.us.es/docs/imagen-etsii/logo-ETSII-US-Horizontal-Color.png"/>
 		<property name="slogan" value="visit the faculty's web!"/>
 		<property name="urlTarget" value="https://www.informatica.us.es/"/>
