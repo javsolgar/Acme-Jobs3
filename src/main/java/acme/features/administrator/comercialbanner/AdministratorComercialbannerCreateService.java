@@ -1,10 +1,10 @@
 
-package acme.features.administrator.banner;
+package acme.features.administrator.comercialbanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.banner.Banner;
+import acme.entities.comercialbanner.Comercialbanner;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
@@ -12,30 +12,29 @@ import acme.framework.entities.Administrator;
 import acme.framework.services.AbstractCreateService;
 
 @Service
-public class AdministratorBannerCreateService implements AbstractCreateService<Administrator, Banner> {
+public class AdministratorComercialbannerCreateService implements AbstractCreateService<Administrator, Comercialbanner> {
 
 	@Autowired
-	AdministratorBannerRepository repository;
+	AdministratorComercialbannerRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<Banner> request) {
+	public boolean authorise(final Request<Comercialbanner> request) {
 		assert request != null;
 		boolean b = request.getPrincipal().hasRole(Administrator.class);
 		return b;
 	}
 
 	@Override
-	public void bind(final Request<Banner> request, final Banner entity, final Errors errors) {
+	public void bind(final Request<Comercialbanner> request, final Comercialbanner entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
 		request.bind(entity, errors);
 	}
 
 	@Override
-	public void unbind(final Request<Banner> request, final Banner entity, final Model model) {
+	public void unbind(final Request<Comercialbanner> request, final Comercialbanner entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
@@ -44,22 +43,21 @@ public class AdministratorBannerCreateService implements AbstractCreateService<A
 	}
 
 	@Override
-	public Banner instantiate(final Request<Banner> request) {
-		Banner result;
-		result = new Banner();
+	public Comercialbanner instantiate(final Request<Comercialbanner> request) {
+		Comercialbanner result;
+		result = new Comercialbanner();
 		return result;
 	}
 
 	@Override
-	public void validate(final Request<Banner> request, final Banner entity, final Errors errors) {
+	public void validate(final Request<Comercialbanner> request, final Comercialbanner entity, final Errors errors) {
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-
 	}
 
 	@Override
-	public void create(final Request<Banner> request, final Banner entity) {
+	public void create(final Request<Comercialbanner> request, final Comercialbanner entity) {
 		this.repository.save(entity);
 	}
 

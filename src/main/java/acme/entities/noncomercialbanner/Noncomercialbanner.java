@@ -1,18 +1,18 @@
 
-package acme.entities.banner;
+package acme.entities.noncomercialbanner;
 
 import javax.persistence.Entity;
-import javax.validation.constraints.NotBlank;
 
-import org.hibernate.validator.constraints.CreditCardNumber;
+import org.hibernate.validator.constraints.URL;
 
+import acme.entities.banner.Banner;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class ComercialBanner extends Banner {
+public class Noncomercialbanner extends Banner {
 
 	// Serialization Identify ------------------------------------------------------------------------------------------------
 
@@ -20,8 +20,6 @@ public class ComercialBanner extends Banner {
 
 	//	Atributes	----------------------------------------------------------------------------------------------------------
 
-	@NotBlank
-	@CreditCardNumber
-	private String creditCard;
-
+	@URL
+	private String jingle;
 }
