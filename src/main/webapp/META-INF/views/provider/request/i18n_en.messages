@@ -9,8 +9,6 @@ provider.request.list.label.ticker = Ticker
 provider.request.form.label.title = Title:
 provider.request.form.label.description = Description:
 provider.request.form.label.reward = Reward:
-provider.request.form.label.amount = Amount:
-provider.request.form.label.currency = Currency:
 provider.request.form.label.deadline = Dead-Line:
 provider.request.form.label.moment = Publication:
 provider.request.form.label.ticker = Ticker:
@@ -20,10 +18,9 @@ provider.request.form.label.button.return = Return
 provider.request.form.button.create = Create
 
 
-provider.request.form.label.euro = Euro
-
-
 provider.request.error.tickerDuplicated = The ticker musn't match with the ticker of any request created previously
 provider.request.error.must-accept = You must accept the condition, which says that you can't delete or update the request
 provider.request.error.must-be-future = The deadline must be a future date.
 provider.request.error.must-not-be-null = The date musn't be null.
+provider.request.error.must-be-euro = The currency of the reward must be Euro (€).
+provider.request.error.not-reward = The reward parameter musn't be null.

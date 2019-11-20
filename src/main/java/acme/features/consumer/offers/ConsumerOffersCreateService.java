@@ -76,15 +76,7 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 			errors.state(request, isFuture, "deadline", "consumer.offers.error.must-be-future");
 
 		}
-		/*
-		 *
-		 * No se si esto tambien debería estar
-		 * hasTitle = entity.getTitle() != null || entity.getTitle() != "";
-		 * errors.state(request, hasTitle, "title", "consumer.offers.error.notTitle");
-		 *
-		 * hasDescription = entity.getDescription() != null || entity.getDescription() != "";
-		 * errors.state(request, hasDescription, "description", "consumer.offers.error.notDescription");
-		 */
+
 		hasTicker = entity.getTicker() != null;
 		errors.state(request, hasTicker, "ticker", "consumer.offers.error.tickerDuplicated", "");
 

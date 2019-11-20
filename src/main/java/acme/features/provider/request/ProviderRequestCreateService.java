@@ -10,6 +10,7 @@ import acme.entities.request.Request;
 import acme.entities.roles.Provider;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
+import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractCreateService;
 
 @Service
@@ -33,7 +34,7 @@ public class ProviderRequestCreateService implements AbstractCreateService<Provi
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "moment", "accept", "deadLine");
+		request.bind(entity, errors, "accept");
 
 	}
 
@@ -42,7 +43,7 @@ public class ProviderRequestCreateService implements AbstractCreateService<Provi
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title", "description", "reward", "deadLine");
+		request.unbind(entity, model, "title", "description", "reward", "deadLine", "moment");
 
 	}
 
@@ -61,42 +62,59 @@ public class ProviderRequestCreateService implements AbstractCreateService<Provi
 		assert errors != null;
 
 		Date dateNow, deadLine;
-		boolean isDuplicated, isAccepted, isFuture, deadLineNotNull;
+		boolean isDuplicated, hasTicker, isAccepted, isFuture, isEuro, hasReward, hasDeadline;
 
-		//deadLineNotNull = request.getModel().getDate("deadLine") != null;
-		deadLineNotNull = request.getModel().getString("deadLine") != null && request.getModel().getString("deadLine") != "";
-		errors.state(request, deadLineNotNull, "deadLine", "provider.request.error.must-not-be-null");
+		// Validación deadLine -----------------------------------------------------------------------------
 
-		if (deadLineNotNull) {
-			dateNow = new Date(System.currentTimeMillis() - 1);
+		dateNow = new Date(System.currentTimeMillis() - 1);
 
-			deadLine = request.getModel().getDate("deadLine");
-			//deadLine = new SimpleDateFormat("yyyy/mm/dd")
+		hasDeadline = entity.getDeadLine() != null;
+		errors.state(request, hasDeadline, "deadLine", "provider.request.error.must-not-be-null");
 
+		if (hasDeadline) {
+			deadLine = entity.getDeadLine();
 			isFuture = dateNow.before(deadLine);
 			errors.state(request, isFuture, "deadLine", "provider.request.error.must-be-future");
 
 		}
 
-		isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
-		errors.state(request, !isDuplicated, "ticker", "provider.request.error.tickerDuplicated");
+		// Validación checkbox -----------------------------------------------------------------------------
 
 		isAccepted = request.getModel().getString("accept") != "" && request.getModel().getString("accept") != null;
 		errors.state(request, isAccepted, "accept", "provider.request.error.must-accept");
 
-		isAccepted = request.getModel().getString("accept") != "" && request.getModel().getString("accept") != null;
-		errors.state(request, isAccepted, "accept", "provider.request.error.must-accept");
+		// Validación ticker -----------------------------------------------------------------------------
+
+		hasTicker = entity.getTicker() != null;
+		errors.state(request, hasTicker, "ticker", "provider.request.error.tickerDuplicated", "");
+
+		if (hasTicker) {
+
+			isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
+			errors.state(request, !isDuplicated, "ticker", "provider.request.error.tickerDuplicated");
+		}
+
+		// Validación reward -----------------------------------------------------------------------------
+
+		hasReward = entity.getReward() != null;
+		errors.state(request, hasReward, "reward", "provider.request.error.not-reward");
+
+		if (hasReward) {
+			Money euro = new Money();
+			euro.setCurrency("€");
+
+			isEuro = entity.getReward().getCurrency().equals(euro.getCurrency());
+			errors.state(request, isEuro, "reward", "provider.request.error.must-be-euro");
+
+		}
 	}
 
 	@Override
 	public void create(final acme.framework.components.Request<Request> request, final Request entity) {
-		Date deadline;
-		//		Money reward;
+		Date moment;
 
-		//reward = (Money) request.getModel().getAttribute("reward");
-		deadline = request.getModel().getDate("deadLine");
-		//entity.setReward(reward);
-		entity.setDeadLine(deadline);
+		moment = new Date(System.currentTimeMillis() - 1);
+		entity.setMoment(moment);
 
 		this.repository.save(entity);
 
