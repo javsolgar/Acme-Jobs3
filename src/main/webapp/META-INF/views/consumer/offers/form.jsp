@@ -13,9 +13,9 @@
 	
 	<acme:form-moment code="consumer.offers.form.label.deadline" path="deadline"/>
 	
+	<acme:form-money code="consumer.offers.form.label.major" path="majorRange"/>
+	<acme:form-money code="consumer.offers.form.label.lower" path="lowerRange"/>
 	
-	<acme:form-textbox code="consumer.offers.form.label.lower" path="lowerRange"/>
-	<acme:form-textbox code="consumer.offers.form.label.major" path="majorRange"/>
 	
 	
 	

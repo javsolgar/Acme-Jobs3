@@ -11,6 +11,7 @@ import acme.entities.roles.Consumer;
 import acme.framework.components.Errors;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
+import acme.framework.datatypes.Money;
 import acme.framework.services.AbstractCreateService;
 
 @Service
@@ -34,7 +35,7 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "currency", "accept");
+		request.bind(entity, errors, "accept");
 
 	}
 
@@ -61,43 +62,64 @@ public class ConsumerOffersCreateService implements AbstractCreateService<Consum
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		boolean isDuplicated, isRange, isAccepted, isFuture, hasDeadline, hasTitle, hasDescription, hasMajorRange, hasLowerRange;
+		boolean isDuplicated, isEuroLower, isEuroMajor, isRange, isAccepted, isFuture, hasDeadline, hasTitle, hasDescription, hasMajorRange, hasLowerRange, hasTicker;
 		Date dateNow, deadline;
 
 		dateNow = new Date(System.currentTimeMillis() - 1);
 
 		hasDeadline = entity.getDeadline() != null;
-		errors.state(request, hasDeadline, "deadline", "administrator.offers.error.must-have-deadline");
+		errors.state(request, hasDeadline, "deadline", "consumer.offers.error.must-have-deadline");
 
 		if (hasDeadline) {
 			deadline = entity.getDeadline();
 			isFuture = dateNow.before(deadline);
-			errors.state(request, isFuture, "deadline", "administrator.offers.error.must-be-future");
+			errors.state(request, isFuture, "deadline", "consumer.offers.error.must-be-future");
 
 		}
 		/*
-		 * 
+		 *
 		 * No se si esto tambien debería estar
 		 * hasTitle = entity.getTitle() != null || entity.getTitle() != "";
 		 * errors.state(request, hasTitle, "title", "consumer.offers.error.notTitle");
-		 * 
+		 *
 		 * hasDescription = entity.getDescription() != null || entity.getDescription() != "";
 		 * errors.state(request, hasDescription, "description", "consumer.offers.error.notDescription");
 		 */
-		isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
-		errors.state(request, !isDuplicated, "ticker", "consumer.offers.error.tickerDuplicated");
+		hasTicker = entity.getTicker() != null;
+		errors.state(request, hasTicker, "ticker", "consumer.offers.error.tickerDuplicated", "");
 
-		isRange = entity.getMajorRange().getAmount() > entity.getLowerRange().getAmount();
-		errors.state(request, isRange, "amountMajor", "consumer.offers.error.notRange");
+		if (hasTicker) {
 
-		hasMajorRange = entity.getMajorRange().getAmount() != null;
-		errors.state(request, hasMajorRange, "amountMajor", "consumer.offers.error.notRange");
+			isDuplicated = this.repository.findOneByTicker(entity.getTicker()) != null;
+			errors.state(request, !isDuplicated, "ticker", "consumer.offers.error.tickerDuplicated");
+		}
 
-		hasLowerRange = entity.getLowerRange().getAmount() != null;
-		errors.state(request, hasLowerRange, "amountMajor", "consumer.offers.error.notRange");
+		hasMajorRange = entity.getMajorRange() != null;
+		errors.state(request, hasMajorRange, "majorRange", "consumer.offers.error.not-range");
 
-		isAccepted = request.getModel().getBoolean("accept") != null;
-		errors.state(request, isAccepted, "accept", "authenticated.offers.error.must-accept");
+		hasLowerRange = entity.getLowerRange() != null;
+		errors.state(request, hasLowerRange, "lowerRange", "consumer.offers.error.not-range");
+
+		if (hasLowerRange && hasMajorRange) {
+			Money euro = new Money();
+			euro.setCurrency("€");
+
+			isEuroLower = entity.getLowerRange().getCurrency().equals(euro.getCurrency());
+			errors.state(request, isEuroLower, "lowerRange", "consumer.offers.error.must-be-euro");
+
+			isEuroMajor = entity.getMajorRange().getCurrency().equals(euro.getCurrency());
+			errors.state(request, isEuroMajor, "majorRange", "consumer.offers.error.must-be-euro");
+
+			if (isEuroLower && isEuroMajor) {
+
+				isRange = entity.getMajorRange().getAmount() > entity.getLowerRange().getAmount();
+				errors.state(request, isRange, "majorRange", "consumer.offers.error.notRange");
+			}
+
+		}
+
+		isAccepted = request.getModel().getString("accept") != "" && request.getModel().getString("accept") != null;
+		errors.state(request, isAccepted, "accept", "consumer.offers.error.must-accept");
 
 	}
 

@@ -26,3 +26,6 @@ consumer.challenge.error.must-have-deadline = La fecha límite no puede estar va
 consumer.offers.error.tickerDuplicated = El ticker no debe coincidir con ninguna otra oferta creada previamente
 consumer.offers.error.must-accept = Debes aceptar la condición de no poder borrar ni editar las ofertas creadas
 consumer.offers.error.notRange = La cifra superior del rango de la recompensa debe ser mayor que la cifran inferior
+consumer.offers.error.must-have-ticker = La oferta debe de tener un ticker.
+consumer.offers.error.not-range = El parámetro no puede estar vacío.
+consumer.offers.error.must-be-euro = La moneda debe ser el Euro (€).
