@@ -34,7 +34,7 @@ public class ProviderRequestCreateService implements AbstractCreateService<Provi
 		assert request != null;
 		assert entity != null;
 		assert errors != null;
-		request.bind(entity, errors, "accept");
+		request.bind(entity, errors, "accept", "moment");
 
 	}
 
@@ -43,7 +43,7 @@ public class ProviderRequestCreateService implements AbstractCreateService<Provi
 		assert request != null;
 		assert entity != null;
 		assert model != null;
-		request.unbind(entity, model, "title", "description", "reward", "deadLine", "moment");
+		request.unbind(entity, model, "title", "description", "reward", "deadLine", "ticker");
 
 	}
 

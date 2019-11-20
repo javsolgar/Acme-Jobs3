@@ -33,7 +33,7 @@ public class Request extends DomainEntity {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Past
-	@NotNull
+	//@NotNull
 	private Date				moment;
 
 	@Temporal(TemporalType.TIMESTAMP)
