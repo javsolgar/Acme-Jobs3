@@ -14,7 +14,7 @@ import acme.framework.entities.Administrator;
 
 @Controller
 @RequestMapping("/administrator/comercialbanner/")
-public class AdiministratorComercialbannerController extends AbstractController<Administrator, ComercialBanner> {
+public class AdministratorComercialbannerController extends AbstractController<Administrator, ComercialBanner> {
 
 	@Autowired
 	private AdministratorComercialbannerListService		listService;

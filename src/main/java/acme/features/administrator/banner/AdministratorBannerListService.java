@@ -1,45 +1,46 @@
 
-package acme.features.administrator.comercialbanner;
+package acme.features.administrator.banner;
 
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import acme.entities.banner.ComercialBanner;
+import acme.entities.banner.Banner;
 import acme.framework.components.Model;
 import acme.framework.components.Request;
 import acme.framework.entities.Administrator;
 import acme.framework.services.AbstractListService;
 
 @Service
-public class AdministratorComercialbannerListService implements AbstractListService<Administrator, ComercialBanner> {
+public class AdministratorBannerListService implements AbstractListService<Administrator, Banner> {
 
 	@Autowired
-	AdministratorComercialbannerRepository repository;
+	AdministratorBannerRepository repository;
 
 
 	@Override
-	public boolean authorise(final Request<ComercialBanner> request) {
+	public boolean authorise(final Request<Banner> request) {
 		assert request != null;
 		boolean b = request.getPrincipal().hasRole(Administrator.class);
 		return b;
 	}
 
 	@Override
-	public void unbind(final Request<ComercialBanner> request, final ComercialBanner entity, final Model model) {
+	public void unbind(final Request<Banner> request, final Banner entity, final Model model) {
 		assert request != null;
 		assert entity != null;
 		assert model != null;
 
-		request.unbind(entity, model, "urlPicture", "slogan", "urlTarget", "creditCard");
+		request.unbind(entity, model, "urlPicture", "slogan", "urlTarget");
+
 	}
 
 	@Override
-	public Collection<ComercialBanner> findMany(final Request<ComercialBanner> request) {
+	public Collection<Banner> findMany(final Request<Banner> request) {
 		assert request != null;
 
-		Collection<ComercialBanner> result;
+		Collection<Banner> result;
 		result = this.repository.findManyAll();
 		return result;
 	}

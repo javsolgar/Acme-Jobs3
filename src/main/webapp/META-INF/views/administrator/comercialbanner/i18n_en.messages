@@ -4,7 +4,7 @@ administrator.comercialbanner.list.label.urlTarget = Url target
 administrator.comercialbanner.form.label.urlPicture = Url picture:
 administrator.comercialbanner.form.label.slogan = Slogan:
 administrator.comercialbanner.form.label.urlTarget = Url target:
-administrator.comercialbanner.form.label.creditCard = Credit Card:
+administrator.comercialbanner.form.label.creditCard = Credit card:
 
 administrator.comercialbanner.form.label.button.return = Return
 administrator.comercialbanner.form.button.update = Update
