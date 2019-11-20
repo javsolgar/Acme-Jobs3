@@ -11,6 +11,10 @@
 	<acme:form-double code="administrator.dashboard.form.label.maxRewardRequest" path="maxRewardRequest" />	
 	<acme:form-double code="administrator.dashboard.form.label.minRewardOffers" path="minRewardOffers" />
 	<acme:form-double code="administrator.dashboard.form.label.maxRewardOffers" path="maxRewardOffers"/>
+	<acme:form-double code="administrator.dashboard.form.label.mediaRequest" path="mediaRequest"/>
+	<acme:form-double code="administrator.dashboard.form.label.mediaOffer" path="mediaOffer"/>
+	<acme:form-double code="administrator.dashboard.form.label.stdevRequest" path="stdevRequest"/>
+	<acme:form-double code="administrator.dashboard.form.label.stdevOffer" path="stdevOffer"/>
 	
 </acme:form>
 

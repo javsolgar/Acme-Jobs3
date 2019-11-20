@@ -66,6 +66,8 @@ public class AdministratorDashboardShowService implements AbstractShowService<Ad
 		result.setSectorsOfInverstors(this.getSectorOfInverstors());
 		result.setMediaRequest(this.getMediaRequest());
 		result.setMediaOffer(this.getMediaOffer());
+		result.setStdevOffer(this.getStdevOffer());
+		result.setStdevRequest(this.getStdevRequest());
 		return result;
 	}
 
